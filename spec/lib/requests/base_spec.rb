@@ -1,6 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe TCGL::Requests::Base do
+  describe '#initialize' do
+    subject { described_class.new(options) }
+
+    let(:options) { double }
+
+    it 'stores the options' do
+      expect(subject.options).to eq options
+    end
+  end
+
   describe '#connection' do
     it 'instantiate a Faraday request class' do
       expect(Faraday).to receive(:new).with(url: 'http://site.tcgrandelondrina.com.br:8082')

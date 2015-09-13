@@ -1,6 +1,12 @@
 module TCGL
   module Requests
     class Base
+      attr_reader :options
+
+      def initialize(options = {})
+        @options = options
+      end
+
       def connection
         Faraday.new(url: 'http://site.tcgrandelondrina.com.br:8082') do |faraday|
           faraday.response :logger

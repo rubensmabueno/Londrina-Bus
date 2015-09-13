@@ -3,16 +3,26 @@ module TCGL
     class Base
       include Enumerable
 
+      attr_reader :options
+
+      def initialize(options = {})
+        @options = options
+      end
+
       def collection
         @collection ||= raw_data.map { |member| self.class.model_class.new(member) }
       end
 
       def raw_data
-        @raw_data ||= self.class.request_class.new.fetch
+        @raw_data ||= request_class_instance.fetch
       end
 
       def each
         collection.each { |member| yield member }
+      end
+
+      def request_class_instance
+        @request_class_instance ||= self.class.request_class.new(options)
       end
 
       private

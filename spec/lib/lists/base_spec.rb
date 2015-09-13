@@ -1,6 +1,16 @@
 require 'rails_helper'
 
 RSpec.describe TCGL::Lists::Base do
+  describe '#initialize' do
+    subject { described_class.new(options) }
+
+    let(:options) { double }
+
+    it 'stores the options' do
+      expect(subject.options).to eq options
+    end
+  end
+
   describe '#collection' do
     let(:raw_data) { [{ foo: :bar }, { foo: :bar }] }
 
@@ -16,13 +26,26 @@ RSpec.describe TCGL::Lists::Base do
     let(:request_class) { double }
 
     before do
-      allow(subject.class).to receive(:request_class) { request_class }
-      allow(request_class).to receive(:new) { request_class }
+      allow(subject).to receive(:request_class_instance) { request_class }
     end
 
     it 'fetches on request_class instance' do
       expect(request_class).to receive(:fetch)
       subject.raw_data
+    end
+  end
+
+  describe '#request_class_instance' do
+    subject { described_class.new(options) }
+
+    let(:request_class) { double }
+    let(:options) { double }
+
+    it 'instantiate a request_class with options' do
+      allow(subject.class).to receive(:request_class) { request_class }
+      allow(request_class).to receive(:new).with(options)
+
+      subject.request_class_instance
     end
   end
 

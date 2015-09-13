@@ -1,6 +1,6 @@
 module TCGL
   module Parsers
-    class Lines < Base
+    class Stops < Base
       def to_hash
         array = Array.new
         code.each_with_index { |_, index| array << { code: code[index], title: title[index] } }

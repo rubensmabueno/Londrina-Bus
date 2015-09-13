@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe TCGL::Parsers::Lines do
+RSpec.describe TCGL::Parsers::Stops do
   describe '#to_hash' do
     subject { described_class.new(double) }
 
