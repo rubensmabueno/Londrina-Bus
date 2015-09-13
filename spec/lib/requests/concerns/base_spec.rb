@@ -1,8 +1,18 @@
 require 'rails_helper'
 
-RSpec.describe TCGL::Requests::Base do
+RSpec.describe TCGL::Requests::Concerns::Base do
+  subject { described_klass.new }
+
+  let(:described_klass) { Class.new.include(described_class) }
+
+  describe '.model_name' do
+    before { allow(described_klass).to receive(:name) { 'Foo::Bar' } }
+
+    it { expect(described_klass.model_name).to eq 'Bar' }
+  end
+
   describe '#initialize' do
-    subject { described_class.new(options) }
+    subject { described_klass.new(options) }
 
     let(:options) { double }
 
@@ -25,7 +35,7 @@ RSpec.describe TCGL::Requests::Base do
     before { allow(subject).to receive(:body) { body } }
 
     it 'instantiate a parser_class passing the body and calling to_hash' do
-      expect(described_class).to receive(:parser_class) { parser_class }
+      expect(described_klass).to receive(:parser_class) { parser_class }
       expect(parser_class).to receive(:new).with(body) { parser_class }
       expect(parser_class).to receive(:to_hash)
 

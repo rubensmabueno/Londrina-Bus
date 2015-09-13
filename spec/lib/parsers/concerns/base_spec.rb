@@ -1,8 +1,12 @@
 require 'rails_helper'
 
-RSpec.describe TCGL::Parsers::Base do
+RSpec.describe TCGL::Parsers::Concerns::Base do
+  subject { described_klass.new }
+
+  let(:described_klass) { Class.new.include(described_class) }
+
   describe '#initialize' do
-    subject { described_class.new(raw_body) }
+    subject { described_klass.new(raw_body) }
 
     let(:raw_body) { double }
 
@@ -12,7 +16,7 @@ RSpec.describe TCGL::Parsers::Base do
   end
 
   describe '#body' do
-    subject { described_class.new(raw_body) }
+    subject { described_klass.new(raw_body) }
 
     let(:raw_body) { double }
 

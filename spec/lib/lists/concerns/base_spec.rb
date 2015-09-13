@@ -1,8 +1,18 @@
 require 'rails_helper'
 
-RSpec.describe TCGL::Lists::Base do
+RSpec.describe TCGL::Lists::Concerns::Base do
+  subject { described_klass.new }
+
+  let(:described_klass) { Class.new.include(described_class) }
+
+  describe '.model_name' do
+    before { allow(described_klass).to receive(:name) { 'Foo::Bar' } }
+
+    it { expect(described_klass.model_name).to eq 'Bar' }
+  end
+
   describe '#initialize' do
-    subject { described_class.new(options) }
+    subject { described_klass.new(options) }
 
     let(:options) { double }
 
@@ -13,11 +23,15 @@ RSpec.describe TCGL::Lists::Base do
 
   describe '#collection' do
     let(:raw_data) { [{ foo: :bar }, { foo: :bar }] }
+    let(:model_class) { double }
 
-    before { allow(subject).to receive(:raw_data) { raw_data } }
+    before do
+      allow(subject).to receive(:raw_data) { raw_data }
+      allow(described_klass).to receive(:model_class) { model_class }
+    end
 
     it 'instantiates a new model_class passing raw_data' do
-      expect(TCGL::Models::Base).to receive(:new).with(foo: :bar).twice
+      expect(model_class).to receive(:new).with(foo: :bar).twice
       subject.collection
     end
   end
@@ -36,7 +50,7 @@ RSpec.describe TCGL::Lists::Base do
   end
 
   describe '#request_class_instance' do
-    subject { described_class.new(options) }
+    subject { described_klass.new(options) }
 
     let(:request_class) { double }
     let(:options) { double }
@@ -50,7 +64,7 @@ RSpec.describe TCGL::Lists::Base do
   end
 
   describe '#each' do
-    let(:collection) { [1,2] }
+    let(:collection) { [1, 2] }
 
     before { allow(subject).to receive(:collection) { collection } }
 

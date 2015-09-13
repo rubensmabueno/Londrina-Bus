@@ -1,8 +1,10 @@
 module TCGL
   module Requests
-    class Stops < Base
+    class Stops
+      include Concerns::Base
+
       def request
-        fail ArgumentError, 'Missing arguments for fetching' if line_id.blank? || day_id.blank?
+        fail ArgumentError if line_id.blank? || day_id.blank?
 
         connection.post('/Soap/BuscarPontos') do |req|
           req.headers['Accept'] = 'application/json, text/javascript, */*; q=0.01'

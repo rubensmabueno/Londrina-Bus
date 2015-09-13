@@ -1,6 +1,8 @@
 module TCGL
   module Requests
-    class Lines < Base
+    class Lines
+      include Concerns::Base
+
       def request
         connection.post('/Soap/BuscarLinhas') do |req|
           req.headers['Accept'] = 'application/json, text/javascript, */*; q=0.01'

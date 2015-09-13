@@ -1,6 +1,6 @@
 module TCGL
   module Lists
-    class Stops
+    class Schedules
       include Concerns::Base
     end
   end

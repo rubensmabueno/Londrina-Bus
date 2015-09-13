@@ -1,6 +1,7 @@
 module TCGL
   module Lists
-    class Lines < TCGL::Lists::Base
+    class Lines
+      include Concerns::Base
     end
   end
 end

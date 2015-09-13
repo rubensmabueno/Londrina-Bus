@@ -1,8 +1,10 @@
 module TCGL
   module Parsers
-    class Lines < Base
+    class Lines
+      include Concerns::Base
+
       def to_hash
-        array = Array.new
+        array = []
         code.each_with_index { |_, index| array << { code: code[index], title: title[index] } }
         array
       end
