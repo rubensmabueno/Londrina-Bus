@@ -11,38 +11,38 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_151_213_180_836) do
-  create_table 'lines', force: :cascade do |t|
-    t.string 'code'
-    t.string 'title'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+ActiveRecord::Schema.define(version: 20151213180836) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
+  create_table "lines", force: :cascade do |t|
+    t.string   "code"
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'routes', force: :cascade do |t|
-    t.integer 'line_id'
-    t.integer 'origin_id'
-    t.integer 'destination_id'
-    t.text 'schedule'
-    t.integer 'day'
-    t.datetime 'created_at',     null: false
-    t.datetime 'updated_at',     null: false
+  create_table "routes", force: :cascade do |t|
+    t.integer  "line_id"
+    t.integer  "origin_id"
+    t.integer  "destination_id"
+    t.text     "schedule"
+    t.integer  "day"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
   end
 
-  add_index 'routes', ['destination_id'], name: 'index_routes_on_destination_id'
-  add_index 'routes', ['line_id'], name: 'index_routes_on_line_id'
-  add_index 'routes', ['origin_id'], name: 'index_routes_on_origin_id'
+  add_index "routes", ["destination_id"], name: "index_routes_on_destination_id", using: :btree
+  add_index "routes", ["line_id"], name: "index_routes_on_line_id", using: :btree
+  add_index "routes", ["origin_id"], name: "index_routes_on_origin_id", using: :btree
 
-  create_table 'schedules', force: :cascade do |t|
-    t.text 'schedule'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
+  create_table "stops", force: :cascade do |t|
+    t.string   "code"
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  create_table 'stops', force: :cascade do |t|
-    t.string 'code'
-    t.string 'title'
-    t.datetime 'created_at', null: false
-    t.datetime 'updated_at', null: false
-  end
+  add_foreign_key "routes", "lines"
 end
