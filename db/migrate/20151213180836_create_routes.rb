@@ -4,7 +4,7 @@ class CreateRoutes < ActiveRecord::Migration
       t.references :line, index: true, foreign_key: true, allow_nil: false, on_delete: :cascade
       t.references :origin, index: true, foreign_key: true, allow_nil: false, on_delete: :cascade
       t.references :destination, index: true, foreign_key: true, allow_nil: false, on_delete: :cascade
-      t.references :schedule, index: true, foreign_key: true, allow_nil: false, on_delete: :cascade
+      t.text :schedule, allow_nil: false
       t.integer :day
 
       t.timestamps null: false

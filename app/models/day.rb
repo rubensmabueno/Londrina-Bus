@@ -1,8 +1,8 @@
 class Day
   DAYS = {
-      weekday: 1,
-      saturday: 2,
-      sunday: 3,
+    weekday: 1,
+    saturday: 2,
+    sunday: 3
   }
 
   def self.all

@@ -1,0 +1,37 @@
+<div class="select-box">
+  <%= select_tag(:line, nil, class: 'line-select') %>
+</div>
+
+<div class="select-box">
+  <%= select_tag(:day, options_for_select(Day::DAYS.to_a), class: 'day-select') %>
+</div>
+
+<div class="select-box">
+  <%= select_tag(:origin, nil, class: 'origin-select') %>
+</div>
+
+<div class="select-box">
+  <%= select_tag(:destination, nil, class: 'destination-select') %>
+</div>
+
+<table id="records-table-1" style="float: left">
+  <thead>
+    <tr>
+      <th>Arrival</th>
+      <th>Departure</th>
+      <th>Path</th>
+    </tr>
+  </thead>
+  <tbody></tbody>
+</table>
+
+<table id="records-table-2" style="float: right">
+  <thead>
+  <tr>
+    <th>Arrival</th>
+    <th>Departure</th>
+    <th>Path</th>
+  </tr>
+  </thead>
+  <tbody></tbody>
+</table>
