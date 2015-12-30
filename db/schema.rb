@@ -18,16 +18,17 @@ ActiveRecord::Schema.define(version: 20151213180836) do
 
   create_table "lines", force: :cascade do |t|
     t.string   "code"
+    t.json     "itineraries"
     t.string   "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "routes", force: :cascade do |t|
     t.integer  "line_id"
     t.integer  "origin_id"
     t.integer  "destination_id"
-    t.text     "schedule"
+    t.json     "schedule"
     t.integer  "day"
     t.datetime "created_at",     null: false
     t.datetime "updated_at",     null: false

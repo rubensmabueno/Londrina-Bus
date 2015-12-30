@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :lines do
+        resources :itineraries
+        resources :positions
+
         resources :origins do
           resources :destinations do
             resources :schedules

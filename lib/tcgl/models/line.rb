@@ -8,6 +8,8 @@ module TCGL
 
       association :stops
       association :schedules
+      association :itineraries
+      association :positions
     end
   end
 end

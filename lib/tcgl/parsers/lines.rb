@@ -14,7 +14,7 @@ module TCGL
       end
 
       def title
-        @title ||= body['valor'].map { |value| value.to_s.split(' - ').last.to_sym }
+        @title ||= body['valor'].map { |value| value.to_s.split(' - ').drop(1).join(' - ').to_sym }
       end
     end
   end

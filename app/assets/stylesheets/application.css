@@ -12,5 +12,21 @@
  *
  *= require_tree .
  *= require select2
+ *= require select2-bootstrap
  *= require_self
  */
+
+#map {
+    height: 300px;
+}
+
+.marker-label {
+    padding: 3px;
+    background-color: white;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    border: 1px solid red;
+    white-space: nowrap;
+    overflow: hidden;
+}

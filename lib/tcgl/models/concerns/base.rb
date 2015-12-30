@@ -47,6 +47,10 @@ module TCGL
           initialize_attributes
         end
 
+        def to_hash
+          record.to_hash
+        end
+
         def initialize_attributes
           self.class.attributes.each do |attribute|
             public_send("#{attribute[:attr_name]}=", record[attribute[:attr_name]])

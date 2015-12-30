@@ -1,37 +1,61 @@
-<div class="select-box">
-  <%= select_tag(:line, nil, class: 'line-select') %>
+<div class="row">
+  <div class="col-md-3">
+    <div class="form-group">
+      <%= label_tag(:line, 'Linha') %>
+      <%= select_tag(:line, nil, class: 'form-control line-select') %>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="form-group">
+      <%= label_tag(:day, 'Tipo') %>
+      <%= select_tag(:day, options_for_select([['SEMANA', 1], ['SÁBADO', 2], ['DOMINGO', 3]]), class: 'form-control day-select') %>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="form-group">
+      <%= label_tag(:origin, 'Origem') %>
+      <%= select_tag(:origin, nil, class: 'form-control origin-select') %>
+    </div>
+  </div>
+
+  <div class="col-md-3">
+    <div class="form-group">
+      <%= label_tag(:destination, 'Destino') %>
+      <%= select_tag(:destination, nil, class: 'form-control destination-select') %>
+    </div>
+  </div>
 </div>
 
-<div class="select-box">
-  <%= select_tag(:day, options_for_select(Day::DAYS.to_a), class: 'day-select') %>
+<div class="row">
+  <div id="map"></div>
 </div>
 
-<div class="select-box">
-  <%= select_tag(:origin, nil, class: 'origin-select') %>
+<div class="row">
+  <div class="col-md-6">
+    <table id="records-table-1" class="table table-striped">
+      <thead>
+      <tr>
+        <th>Saída</th>
+        <th>Chegada</th>
+        <th>Via</th>
+      </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <div class="col-md-6">
+    <table id="records-table-2" class="table table-striped">
+      <thead>
+      <tr>
+        <th>Saída</th>
+        <th>Chegada</th>
+        <th>Via</th>
+      </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
 </div>
-
-<div class="select-box">
-  <%= select_tag(:destination, nil, class: 'destination-select') %>
-</div>
-
-<table id="records-table-1" style="float: left">
-  <thead>
-    <tr>
-      <th>Arrival</th>
-      <th>Departure</th>
-      <th>Path</th>
-    </tr>
-  </thead>
-  <tbody></tbody>
-</table>
-
-<table id="records-table-2" style="float: right">
-  <thead>
-  <tr>
-    <th>Arrival</th>
-    <th>Departure</th>
-    <th>Path</th>
-  </tr>
-  </thead>
-  <tbody></tbody>
-</table>

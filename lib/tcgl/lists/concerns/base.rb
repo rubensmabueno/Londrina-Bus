@@ -28,6 +28,14 @@ module TCGL
           @options = options
         end
 
+        def to_hash
+          collection.map(&:to_hash)
+        end
+
+        def to_json
+          to_hash.to_json
+        end
+
         def collection
           @collection ||= raw_data.map { |member| self.class.model_class.new(member) }
         end
